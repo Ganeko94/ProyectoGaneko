@@ -26,7 +26,6 @@ abstract class Registro
         <form action="router.php" method="post">
             <p>Usuario: <input type="text" name="usuario"></p>
             <p>Contraseña: <input type="password" name="contrasena"></p>
-            <p>Repite la contraseña: <input type="password" name="rcontrasena"></p>
             <p>Email: <input type="text" name="email"></p>
             <p>Fecha <input type="date" name="fechareg"></p>
             <p>Ciudad: <input type="text" name="ciudad"></p>
