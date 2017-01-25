@@ -23,7 +23,7 @@ abstract class Login
 
         <h3>Bienvenido, por favor introduce tus datos o regístrate</h3>
 
-        <form action="../Controlador/router.php" method="post">
+        <form action="Controlador/router.php" method="post">
             <p>Usuario: <input type="text" name="usuario"></p>
 
             <p>Contraseña: <input type="password" name="contrasena"></p>

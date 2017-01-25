@@ -5,31 +5,43 @@
  * Date: 25/1/17
  * Time: 13:05
  */
+class logeo{
 
-require_once '../Modelo/Usuario.php';
-require_once '../Modelo/GenericoBD.php';
+    public static function iniciosesion(){
 
-$conexion = conectar();
 
-$nomusuario = $_POST["usuario"];
-$contrasena = $_POST["contrasena"];
+        require_once '../Modelo/Usuario.php';
+        require_once '../Modelo/GenericoBD.php';
 
-$usuario = new Usuario();
 
-$consulta = "SELECT * FROM Usuario WHERE NomUsuario ='".$nomusuario."' AND Contrasena = '\".$contrasena.\"'";
+        $conexion = conectar();
 
-$resultado = mysqli_query($conexion, $consulta);
+        $nomusuario = $_POST["usuario"];
+        $contrasena = $_POST["contrasena"];
 
-$fila = mysqli_fetch_object($resultado);
+        $usuario = new Usuario();
 
-if($resultado->num_rows !=0){
-    session_start();
+        $consulta = "SELECT * FROM Usuario WHERE NomUsuario ='".$nomusuario."' AND Contrasena = '".$contrasena."'";
 
-    $_SESSION["usuario"] = $fila->NomUsuario;
+        $resultado = mysqli_query($conexion, $consulta);
 
-    header('Location: ../Vista/Principal.php');
-}else{
-    echo 'false';
+        $fila = mysqli_fetch_object($resultado);
+
+        if ($resultado->num_rows !=0)
+        {
+            session_start();
+
+            $_SESSION["usuario"] = $fila->NomUsuario;
+
+            header('Location: ../Vista/Principal.php');
+
+        }
+
+        else{
+            header('Location: ../index.php');
+        }
+
+        desconectar($conexion);
+    }
+
 }
-
-desconectar($conexion);

@@ -7,7 +7,7 @@
  */
 
     function conectar(){
-        $conexion = mysqli_connect('localhost:3306', 'root', null, 'Tienda');
+        $conexion = mysqli_connect('localhost:3306', 'root', null, 'fotosbd');
         return $conexion;
     }
 
