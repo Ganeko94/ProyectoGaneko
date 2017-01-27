@@ -36,7 +36,7 @@ abstract class Registro
         <?php
         funciones::sacarPaises();
             for ($x = 0; $x < count($_SESSION["paises"]); $x++) {
-                ?><option value = "<?php echo $_SESSION["paises"][$x]->getIdPais();?>"><?php echo $_SESSION["paises"][$x]->getNomPais();?></option ><?php
+                ?><option name ="pais" value = "<?php echo $_SESSION["paises"][$x]->getIdPais();?>"><?php echo $_SESSION["paises"][$x]->getNomPais();?></option ><?php
             }
         ?>
                 </select></p>

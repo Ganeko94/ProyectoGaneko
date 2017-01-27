@@ -7,7 +7,6 @@
  */
 
 require_once "../Vista/Registro.php";
-require_once "../Vista/Principal.php";
 require_once "registrar.php";
 require_once "../Vista/Exito.php";
 require_once "../Vista/Login.php";

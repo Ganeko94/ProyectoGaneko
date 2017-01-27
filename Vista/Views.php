@@ -23,6 +23,10 @@ abstract class Views
 
         <h3>Estos son tus datos.</h3>
 
+        <?php
+
+        ?>
+
         <form action="router.php" method="post">
             <p>Usuario: <input type="text" name="usuario"></p>
             <p>Contraseña: <input type="password" name="contrasena"></p>

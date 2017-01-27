@@ -6,6 +6,9 @@
  * Time: 13:22
  */
 
+session_start();
+include ('../Modelo/Usuario.php');
+
 echo '<html><a href="../index.php">Pincha aquí para volver al inicio</a></html>';
 
 ?>
@@ -19,7 +22,7 @@ echo '<html><a href="../index.php">Pincha aquí para volver al inicio</a></html>
 <body>
 <h1>Página Principal</h1>
 
-<h3>Bienvenido, por favor selecciona que quieres hacer.</h3>
+<h3>Bienvenido <?php $user = unserialize($_SESSION["usuario"]); echo $user->getNomusuario(); ?>, por favor selecciona que quieres hacer.</h3>
 <form action="../Controlador/router.php" method="post">
     <input type="submit" name="datos" value="Mis datos">
     <input type="submit" name="baja" value="Darme de baja">

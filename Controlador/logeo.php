@@ -23,15 +23,23 @@ class logeo{
 
         $resultado = mysqli_query($conexion, $consulta);
 
-        $fila = mysqli_fetch_object($resultado);
+
 
         if ($resultado->num_rows !=0)
         {
+            $fila = mysqli_fetch_object($resultado);
+
+            /* Creo el objeto usuario, para pasarlo a session y mantenerme iniciado */
+
+            $usuario = new Usuario($fila->NomUsuario, $fila->Contrasena, $fila->Email, $fila->FNacimiento, $fila->Ciudad, $fila->Pais, $fila->Foto);
             session_start();
 
-            $_SESSION["usuario"] = $fila->NomUsuario;
+
+
+
+            $_SESSION["usuario"] = serialize($usuario);
             desconectar($conexion);
-            header('Location: ../Vista/Principal.php');
+             header('Location: ../Vista/Principal.php');
 
         }
 
