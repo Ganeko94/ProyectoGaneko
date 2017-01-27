@@ -8,15 +8,34 @@
 
 class Pais{
 
+    private $idpais;
     private $nompais;
 
     /**
      * Pais constructor.
+     * @param $idpais
      * @param $nompais
      */
-    public function __construct($nompais)
+    public function __construct($idpais, $nompais)
     {
+        $this->idpais = $idpais;
         $this->nompais = $nompais;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdpais()
+    {
+        return $this->idpais;
+    }
+
+    /**
+     * @param mixed $idpais
+     */
+    public function setIdpais($idpais)
+    {
+        $this->idpais = $idpais;
     }
 
     /**
@@ -38,3 +57,5 @@ class Pais{
 
 
 }
+
+//Hago una select de todos los paises, meto el arrayq ue me devuelve en session, y cargo la funcion

@@ -15,7 +15,6 @@ class Usuario{
     private $ciudad;
     private $pais;
     private $foto;
-    private $fregistro;
 
     /**
      * Usuario constructor.
@@ -28,7 +27,7 @@ class Usuario{
      * @param $foto
      * @param $fregistro
      */
-    public function __construct($nomusuario, $contrasena, $email, $fnacimiento, $ciudad, $pais, $foto, $fregistro)
+    public function __construct($nomusuario, $contrasena, $email, $fnacimiento, $ciudad, $pais, $foto)
     {
         $this->nomusuario = $nomusuario;
         $this->contrasena = $contrasena;
@@ -37,7 +36,6 @@ class Usuario{
         $this->ciudad = $ciudad;
         $this->pais = $pais;
         $this->foto = $foto;
-        $this->fregistro = $fregistro;
     }
 
     /**
@@ -151,23 +149,6 @@ class Usuario{
     {
         $this->foto = $foto;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getFregistro()
-    {
-        return $this->fregistro;
-    }
-
-    /**
-     * @param mixed $fregistro
-     */
-    public function setFregistro($fregistro)
-    {
-        $this->fregistro = $fregistro;
-    }
-
 
 
 

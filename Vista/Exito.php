@@ -23,7 +23,7 @@
 
             <h3>Se ha registrado en nuestra Web perfectamente.</h3>
 
-            <a href="../index.php">Haga click aquí para volver a la pagina principal.</a>
+            <a href="../index.php">Haga click aquí para volver al inicio.</a>
 
             </body>
             </html>

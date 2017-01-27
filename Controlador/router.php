@@ -7,6 +7,8 @@
  */
 
 require_once "../Vista/Registro.php";
+require_once "../Vista/Principal.php";
+require_once "registrar.php";
 require_once "../Vista/Exito.php";
 require_once "../Vista/Login.php";
 require_once "logeo.php";
@@ -24,11 +26,16 @@ require_once "logeo.php";
     }
 
     if(isset($_POST["registrar"])){
+        registrar::registrarusuario();
         Exito::mensajeExito();
     }
 
     if(isset($_POST["cancelar"])){
-        Login::formularioInicio();
+        header('Location: ../index.php');
+    }
+
+    if(isset($_POST["datos"])){
+        echo "pitilin";
     }
 
 

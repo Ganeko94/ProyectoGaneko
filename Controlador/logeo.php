@@ -19,8 +19,6 @@ class logeo{
         $nomusuario = $_POST["usuario"];
         $contrasena = $_POST["contrasena"];
 
-        $usuario = new Usuario();
-
         $consulta = "SELECT * FROM Usuario WHERE NomUsuario ='".$nomusuario."' AND Contrasena = '".$contrasena."'";
 
         $resultado = mysqli_query($conexion, $consulta);
@@ -32,16 +30,17 @@ class logeo{
             session_start();
 
             $_SESSION["usuario"] = $fila->NomUsuario;
-
+            desconectar($conexion);
             header('Location: ../Vista/Principal.php');
 
         }
 
         else{
+            desconectar($conexion);
             header('Location: ../index.php');
         }
 
-        desconectar($conexion);
+
     }
 
 }

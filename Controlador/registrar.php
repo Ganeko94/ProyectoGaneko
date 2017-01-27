@@ -25,23 +25,14 @@ class registrar{
         $pais  = $_POST["pais"];
         $foto  = $_POST["foto"];
 
-
         $usuario = new Usuario($nomusuario, $contrasena ,$email ,$fecha ,$ciudad ,$pais ,$foto);
 
+        $consulta = "INSERT INTO Usuario (NomUsuario, Contrasena, Email, FNacimiento, Ciudad, Pais, Foto) VALUES ('".$usuario->getNomusuario()."', '".$usuario->getContrasena()."', '".$usuario->getEmail()."', '".$usuario->getFnacimiento()."', '".$usuario->getCiudad()."', '".$usuario->getPais()."', '".$usuario->getFoto()."')";
 
-        $usuario = new Usuario();
-
-        /*tengo que rellenar el objeto  y terminar la frase de consulta*/
-
-        $consulta = 'INSERT INTO Usuario (IdUsuario, NomUsuario, Contrasena, Email, FNacimiento, Ciudad, Pais, Foto, FRegistro) VALUES (NULL, '".$hihi."', '', '', '', '', '', '', '')';
-
-        $resultado = mysqli_query($conexion, $consulta);
-
-        $fila = mysqli_fetch_object($resultado);
-
-
+        mysqli_query($conexion, $consulta);
 
         desconectar($conexion);
+
     }
 
 }
