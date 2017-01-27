@@ -11,6 +11,7 @@ require_once "../Vista/Principal.php";
 require_once "registrar.php";
 require_once "../Vista/Exito.php";
 require_once "../Vista/Login.php";
+require_once "../Vista/Views.php";
 require_once "logeo.php";
 
 
@@ -35,7 +36,7 @@ require_once "logeo.php";
     }
 
     if(isset($_POST["datos"])){
-        echo "pitilin";
+        Views::misDatos();
     }
 
 
