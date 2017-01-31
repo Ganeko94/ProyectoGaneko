@@ -8,6 +8,8 @@
 
 require_once "Vista/Login.php";
 
+session_abort();
+
 Login::formularioInicio();
 
 ?>

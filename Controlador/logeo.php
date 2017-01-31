@@ -32,10 +32,9 @@ class logeo{
             /* Creo el objeto usuario, para pasarlo a session y mantenerme iniciado */
 
             $usuario = new Usuario($fila->NomUsuario, $fila->Contrasena, $fila->Email, $fila->FNacimiento, $fila->Ciudad, $fila->Pais, $fila->Foto);
+            $usuario->setIdusuario($fila->IdUsuario);
+
             session_start();
-
-
-
 
             $_SESSION["usuario"] = serialize($usuario);
             desconectar($conexion);

@@ -7,7 +7,6 @@
  */
 
 require_once "../Vista/Registro.php";
-require_once "registrar.php";
 require_once "../Vista/Exito.php";
 require_once "../Vista/Login.php";
 require_once "../Vista/Views.php";
@@ -26,16 +25,33 @@ require_once "logeo.php";
     }
 
     if(isset($_POST["registrar"])){
-        registrar::registrarusuario();
-        Exito::mensajeExito();
+        funciones::registrarusuario();
+        logeo::iniciosesion();
+        //Exito::mensajeExito();
     }
 
-    if(isset($_POST["cancelar"])){
+    if(isset($_POST["cancelar1"])){
         header('Location: ../index.php');
+    }
+
+    if(isset($_POST["cancelar2"])){
+        header('Location: ../Vista/Principal.php');
     }
 
     if(isset($_POST["datos"])){
         Views::misDatos();
+    }
+
+    if(isset($_POST["baja"])){
+        if($_POST["baja"] == "Darme de baja"){
+            Views::ventanaBaja();
+        }
+        elseif($_POST["baja"] == "Borrar"){
+            funciones::darBaja();
+            header('Location: ../index.php');
+        }
+
+
     }
 
 

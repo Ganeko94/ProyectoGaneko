@@ -6,8 +6,11 @@
  * Time: 13:53
  */
 
+    session_start();
+
     abstract class Exito
     {
+
 
         public static function mensajeExito()
         {
@@ -23,7 +26,11 @@
 
             <h3>Se ha registrado en nuestra Web perfectamente.</h3>
 
-            <a href="../index.php">Haga click aquí para volver al inicio.</a>
+            <h3>Tus datos son:</h3>
+            <p>Usuario: <strong><?php $user = unserialize($_SESSION["usuario"]); echo $user->getNomusuario(); ?></strong></p>
+            <p>Contraseña: <strong><?php echo $user->getContrasena(); ?></strong></p>
+
+            <a href="../Vista/Principal.php">Haga click aquí para ir a su página principal.</a>
 
             </body>
             </html>

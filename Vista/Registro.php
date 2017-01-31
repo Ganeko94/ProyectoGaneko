@@ -30,13 +30,13 @@ abstract class Registro
         <p>Usuario: <input type="text" name="usuario"></p>
         <p>Contraseña: <input type="password" name="contrasena"></p>
         <p>Email: <input type="text" name="email"></p>
-        <p>Fecha <input type="date" name="fecha"></p>
+        <p>Fecha <input type="date" name="fecha" min="1900-01-01" max="<?php echo date("Y-m-d");?>"></p>
         <p>Ciudad: <input type="text" name="ciudad"></p>
-        <p>Pais: <select>
+        <p>Pais: <select name="pais">
         <?php
         funciones::sacarPaises();
             for ($x = 0; $x < count($_SESSION["paises"]); $x++) {
-                ?><option name ="pais" value = "<?php echo $_SESSION["paises"][$x]->getIdPais();?>"><?php echo $_SESSION["paises"][$x]->getNomPais();?></option ><?php
+                ?><option value ="<?php echo $_SESSION["paises"][$x]->getIdPais();?>"><?php echo $_SESSION["paises"][$x]->getNomPais();?></option ><?php
             }
         ?>
                 </select></p>
@@ -44,7 +44,7 @@ abstract class Registro
             <p>Foto: <input type="text" name="foto"></p>
 
             <input type="submit" name="registrar" value="Registrar">
-            <input type="submit" name="cancelar" value="Cancelar">
+            <input type="submit" name="cancelar1" value="Cancelar">
         </form>
         </body>
         </html>
