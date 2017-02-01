@@ -10,14 +10,13 @@ require_once "../Vista/Registro.php";
 require_once "../Vista/Exito.php";
 require_once "../Vista/Login.php";
 require_once "../Vista/Views.php";
-require_once "logeo.php";
 
 
 
 
     if(isset($_POST["enviar"])){
 
-        logeo::iniciosesion();
+        funciones::iniciosesion();
     }
 
     if(isset($_POST["registrarse"])){
@@ -26,7 +25,7 @@ require_once "logeo.php";
 
     if(isset($_POST["registrar"])){
         funciones::registrarusuario();
-        logeo::iniciosesion();
+        funciones::iniciosesion();
         //Exito::mensajeExito();
     }
 
