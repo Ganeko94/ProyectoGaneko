@@ -7,32 +7,12 @@
  */
 
 require_once '../Modelo/Usuario.php';
-require_once '/Vista/Plantilla/Cabecera.php';
-require_once '/Vista/Plantilla/Pie.php';
+require_once '../Vista/Plantilla/Cabecera.php';
+require_once '../Vista/Plantilla/Pie.php';
 
 
 abstract class Views
 {
-
-    public static function formularioInicio()
-    {
-        Cabecera::mostrarCabecera("Formulario Inicio");
-        ?>
-        <body>
-        <h1>Inicio de Sesión</h1>
-
-        <h3>Bienvenido, por favor introduce tus datos o regístrate</h3>
-
-        <form action="Controlador/router.php" method="post">
-            <p>Usuario: <input type="text" name="usuario"></p>
-
-            <p>Contraseña: <input type="password" name="contrasena"></p>
-            <input type="submit" name="enviar" value="Entrar">
-            <input type="submit" name="registrarse" value="Registrarse">
-        </form>
-        <?php
-        Pie::mostrarPie();
-    }
 
     public static function misDatos()
     {

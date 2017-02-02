@@ -8,7 +8,6 @@
 
 class Usuario{
 
-    private $idusuario;
     private $nomusuario;
     private $contrasena;
     private $email;
@@ -39,19 +38,6 @@ class Usuario{
         $this->foto = $foto;
         }
 
-    /**
-     * @return mixed
-     */
-    public function getIdusuario()
-    {
-        return $this->idusuario;
-    }/**
-     * @param mixed $idusuario
-     */
-    public function setIdusuario($idusuario)
-    {
-        $this->idusuario = $idusuario;
-    }
 
     /**
      * @return mixed

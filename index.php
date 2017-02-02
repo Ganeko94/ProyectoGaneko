@@ -6,10 +6,10 @@
  * Time: 12:00
  */
 
-require_once "Vista/Login.php";
+require_once "Vista/Inicio.php";
 
 session_abort();
 
-Views::formularioInicio();
+Inicio::formularioInicio();
 
 ?>

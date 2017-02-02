@@ -14,6 +14,7 @@ class Cabecera{
                   <head>
                     <meta charset="UTF-8">
                     <title>'.$titulo.'</title>
+                    <link href=""
                   </head>';
     }
 
