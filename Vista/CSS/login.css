@@ -31,3 +31,8 @@ h1, h3{
 #form [type="submit"]{
     background-color: #F5DA81;
 }
+
+#botones p{
+    text-align: center;
+}
+

@@ -78,7 +78,7 @@ class funciones{
 
         else{
             desconectar($conexion);
-            Inicio::formularioInicio($texto = 'El usuario o la contraseña no coinciden, por favor intentelo de nuevo', $ruta = 'router.php', $ruta2 = '../Vista/CSS/style.css');
+            Inicio::formularioInicio($texto = 'El usuario o la contraseña no coinciden, por favor intentelo de nuevo', $ruta = 'router.php', $ruta2 = '../Vista/CSS/');
         }
 
 

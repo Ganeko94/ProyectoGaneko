@@ -17,19 +17,22 @@ require_once '../Modelo/Usuario.php';
     <meta charset="UTF-8">
     <title>Principal</title>
     <link href="CSS/login.css" rel="stylesheet" type="text/css">
+    <link href="CSS/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
 <h1>Página Principal</h1>
 
 <h3>Bienvenido <?php $user = unserialize($_SESSION["usuario"]); echo $user->getNomusuario();?>, por favor selecciona que quieres hacer.</h3>
-<form action="../Controlador/router.php" method="post">
-    <p><input type="submit" name="datos" value="Mis datos">
-    <input type="submit" name="baja" value="Darme de baja">
-    <input type="submit" name="albumes" value="Mis álbumes">
-    <input type="submit" name="nuevoalbum" value="Crear álbum">
-    <input type="submit" name="nuevafoto" value="Añadir foto a álbum"></p>
-</form>
-<a href="../index.php">Pincha aquí para cerrar la sesión</a>
+<div id="botones">
+    <form action="../Controlador/router.php" method="post">
+        <p><input type="submit" class="btn btn-info" name="datos" value="Mis datos">
+        <input type="submit" class="btn btn-danger" name="baja" value="Darme de baja">
+        <input type="submit" class="btn btn-info" name="albumes" value="Mis álbumes">
+        <input type="submit" class="btn btn-success" name="nuevoalbum" value="Crear álbum">
+        <input type="submit" class="btn btn-success" name="nuevafoto" value="Añadir foto a álbum">
+        <input type="submit" class="btn btn-warning" name="cerrarsesion" value="Cerrar Sesión"></p>
+    </form>
+</div>
 </body>
 </html>

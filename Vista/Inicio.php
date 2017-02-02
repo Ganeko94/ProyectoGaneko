@@ -10,7 +10,7 @@
 
 class Inicio{
 
-        public static function formularioInicio($texto = '', $ruta = 'Controlador/router.php', $ruta2 = 'Vista/CSS/style.css')
+        public static function formularioInicio($texto = '', $ruta = 'Controlador/router.php', $ruta2 = 'Vista/CSS/')
         {
             ?>
             <!DOCTYPE html>
@@ -18,7 +18,8 @@ class Inicio{
             <head>
                 <meta charset="UTF-8">
                 <title>Inicio</title>
-                <link href="<?php echo $ruta2;?>" rel="stylesheet" type="text/css">
+                <link href="<?php echo $ruta2.'login.css';?>" rel="stylesheet" type="text/css">
+                <link href="<?php echo $ruta2.'bootstrap/css/bootstrap.min.css';?>" rel="stylesheet" type="text/css">
                 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
             </head>
             <body>
