@@ -1,0 +1,33 @@
+body{
+    background-color: #F2F2F2;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h3{
+    text-align: center;
+}
+
+#form{
+    border: 1px solid black;
+    width: 300px;
+    height: 150px;
+    margin: 70px auto;
+    background-color: #F5F6CE;
+}
+
+.error{
+    color: red;
+    text-align: center;
+}
+
+#form p{
+    text-align: center;
+}
+
+.botones{
+    margin-top: 40px;
+}
+
+#form [type="submit"]{
+    background-color: #F5DA81;
+}

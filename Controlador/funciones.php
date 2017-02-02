@@ -46,6 +46,7 @@ class funciones{
 
         require_once '../Modelo/Usuario.php';
         require_once '../Modelo/GenericoBD.php';
+        require_once '../Vista/Inicio.php';
 
 
         $conexion = conectar();
@@ -66,7 +67,6 @@ class funciones{
             /* Creo el objeto usuario, para pasarlo a session y mantenerme iniciado */
 
             $usuario = new Usuario($fila->NomUsuario, $fila->Contrasena, $fila->Email, $fila->FNacimiento, $fila->Ciudad, $fila->Pais, $fila->Foto);
-            $usuario->setIdusuario($fila->IdUsuario);
 
             session_start();
 
@@ -78,7 +78,7 @@ class funciones{
 
         else{
             desconectar($conexion);
-            header('Location: ../index.php');
+            Inicio::formularioInicio($texto = 'El usuario o la contraseña no coinciden, por favor intentelo de nuevo', $ruta = 'router.php', $ruta2 = '../Vista/CSS/style.css');
         }
 
 
@@ -93,7 +93,7 @@ class funciones{
 
         $conexion = conectar();
 
-        $consulta = "DELETE FROM Usuario WHERE IdUsuario = '".$user->getIdusuario()."'";
+        $consulta = "DELETE FROM Usuario WHERE NomUsuario = '".$user->getNomusuario()."'";
 
         mysqli_query($conexion, $consulta);
 
@@ -127,7 +127,7 @@ class funciones{
 
     }
 
-    public static function modificarUsuario(){
+    /*public static function modificarUsuario(){
 
         require_once '../Modelo/Usuario.php';
         require_once '../Modelo/GenericoBD.php';
@@ -141,6 +141,6 @@ class funciones{
         mysqli_query($conexion, $consulta);
 
         desconectar($conexion);
-    }
+    }*/
 
 }
