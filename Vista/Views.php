@@ -7,6 +7,8 @@
  */
 
 require_once '../Modelo/Usuario.php';
+require_once '/Vista/Plantilla/Cabecera.php';
+require_once '/Vista/Plantilla/Pie.php';
 
 
 abstract class Views
@@ -14,9 +16,8 @@ abstract class Views
 
     public static function formularioInicio()
     {
-
+        Cabecera::mostrarCabecera("Formulario Inicio");
         ?>
-
         <body>
         <h1>Inicio de Sesión</h1>
 
@@ -29,8 +30,8 @@ abstract class Views
             <input type="submit" name="enviar" value="Entrar">
             <input type="submit" name="registrarse" value="Registrarse">
         </form>
-
         <?php
+        Pie::mostrarPie();
     }
 
     public static function misDatos()
