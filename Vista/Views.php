@@ -31,7 +31,7 @@ abstract class Views
 
 
         <form action="router.php" method="post">
-            <p>Usuario: <input type="text" name="usuario" value="<?php $user = unserialize($_SESSION["usuario"]); echo $user->getNomusuario();?>"></p>
+            <p>Usuario: <input type="text" name="usuario" value="<?php $user = unserialize($_SESSION["usuario"]); echo $user->getNomusuario();?>" disabled></p>
             <p>Contraseña: <input type="password" name="contrasena" value="<?php echo $user->getContrasena();?>"></p>
             <p>Email: <input type="text" name="email" value="<?php echo $user->getEmail();?>"></p>
             <p>Fecha <input type="date" name="fecha" min="1900-01-01" max="<?php echo date("Y-m-d");?>" value="<?php echo $user->getFnacimiento();?>"></p>

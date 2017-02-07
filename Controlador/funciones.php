@@ -78,7 +78,7 @@ class funciones{
 
         else{
             desconectar($conexion);
-            Inicio::formularioInicio($texto = 'El usuario o la contraseña no coinciden, por favor intentelo de nuevo', $ruta = 'router.php', $ruta2 = '../Vista/CSS/');
+            Inicio::formularioInicio($texto = '<div class="alert alert-danger" role="alert"><p>El usuario o la contraseña no coinciden, por favor intentelo de nuevo</p></div>', $ruta = 'router.php', $ruta2 = '../Vista/CSS/');
         }
 
 
@@ -127,20 +127,36 @@ class funciones{
 
     }
 
-    /*public static function modificarUsuario(){
+    public static function modificarUsuario(){
 
         require_once '../Modelo/Usuario.php';
         require_once '../Modelo/GenericoBD.php';
 
         $user = unserialize($_SESSION["usuario"]);
 
+        $contrasena = $_POST["contrasena"];
+        $email = $_POST["email"];
+        $fecha  = $_POST["fecha"];
+        $ciudad  = $_POST["ciudad"];
+        $pais  = $_POST["pais"];
+        $foto  = $_POST["foto"];
+
+        $user->setContrasena($contrasena);
+        $user->setEmail($email);
+        $user->setFnacimiento($fecha);
+        $user->setCiudad($ciudad);
+        $user->setPais($pais);
+        $user->setFoto($foto);
+
         $conexion = conectar();
 
-        $consulta = "DELETE FROM Usuario WHERE IdUsuario = '".$user->getIdusuario()."'";
+        $consulta = "UPDATE Usuario SET Contrasena='".$user->getContrasena()."', Email='".$user->getEmail()."', FNacimiento='".$user->getFnacimiento()."', Ciudad='".$user->getCiudad()."', Pais='".$user->getPais()."', Foto='".$user->getFoto()."'  WHERE NomUsuario = '".$user->getNomusuario()."'";
 
         mysqli_query($conexion, $consulta);
 
+        $_SESSION["usuario"] = serialize($user);
+
         desconectar($conexion);
-    }*/
+    }
 
 }

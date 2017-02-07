@@ -13,7 +13,7 @@ require_once "../Vista/Views.php";
 
 
 
-    if(isset($_POST["enviar"])){
+    if(isset($_POST["entrar"])){
         funciones::iniciosesion();
     }
 
@@ -24,7 +24,6 @@ require_once "../Vista/Views.php";
     if(isset($_POST["registrar"])){
         funciones::registrarusuario();
         funciones::iniciosesion();
-        //Exito::mensajeExito();
     }
 
     if(isset($_POST["cancelar1"])){
@@ -36,6 +35,10 @@ require_once "../Vista/Views.php";
     }
 
     if(isset($_POST["datos"])){
+        Views::misDatos();
+    }
+
+    if(isset($_POST["update"])){
         Views::misDatos();
     }
 

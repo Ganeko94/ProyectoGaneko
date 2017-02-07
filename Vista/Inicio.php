@@ -18,24 +18,41 @@ class Inicio{
             <head>
                 <meta charset="UTF-8">
                 <title>Inicio</title>
-                <link href="<?php echo $ruta2.'login.css';?>" rel="stylesheet" type="text/css">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link href="<?php echo $ruta2.'bootstrap/css/bootstrap.min.css';?>" rel="stylesheet" type="text/css">
                 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
             </head>
             <body>
-            <h1>Inicio de Sesión</h1>
+            <div class="container">
+                <div class="row">
+                    <h1 style="text-align: center">Inicio de Sesión</h1>
 
-            <h3>Bienvenido, por favor introduce tus datos o regístrate</h3>
-            <p class="error"><?php echo $texto;?></p>
-            <div id="form">
+                    <h3 style="text-align: center">Bienvenido, por favor introduce tus datos o regístrate</h3>
 
-                <form action="<?php echo $ruta;?>" method="post">
-                    <p>Usuario: <input type="text" name="usuario"></p>
+                    <?php echo $texto;?>
 
-                    <p>Contraseña: <input type="password" name="contrasena"></p>
-                    <p class="botones"><input type="submit" name="enviar" value="Entrar">
-                    <input type="submit" name="registrarse" value="Registrarse"></p>
-                </form>
+                    <div class="container">
+                        <form class="form-horizontal col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-lg-6 col-lg-offset-3 well" action="<?php echo $ruta;?>" method="post">
+                            <div class="form-group">
+                                <label for="usuario" class="col-sm-2 control-label">Usuario</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="usuario" class="form-control" id="usuario" placeholder="Usuario">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contrasena" class="col-sm-2 control-label">Contrasena</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="contrasena" class="form-control" id="contrasena" placeholder="Contraseña">
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-offset-4 col-xs-6" style="margin-top: 10px">
+                                        <input type="submit" name="entrar" class="btn btn-default" value="Entrar">
+                                        <input type="submit" name="registrarse" class="btn btn-default" value="Registrarse">
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             </body>
             </html>

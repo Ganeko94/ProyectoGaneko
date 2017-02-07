@@ -16,17 +16,15 @@ require_once '../Modelo/Usuario.php';
 <head>
     <meta charset="UTF-8">
     <title>Principal</title>
-    <link href="CSS/login.css" rel="stylesheet" type="text/css">
     <link href="CSS/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
-<h1>Página Principal</h1>
+<h1  style="text-align: center">Página Principal</h1>
 
-<h3>Bienvenido <?php $user = unserialize($_SESSION["usuario"]); echo $user->getNomusuario();?>, por favor selecciona que quieres hacer.</h3>
+<h3  style="text-align: center">Bienvenido <?php $user = unserialize($_SESSION["usuario"]); echo $user->getNomusuario();?>, por favor selecciona que quieres hacer.</h3>
 <div id="botones">
     <form action="../Controlador/router.php" method="post">
-        <p><input type="submit" class="btn btn-info" name="datos" value="Mis datos">
+        <p style="text-align: center"><input type="submit" class="btn btn-info" name="datos" value="Mis datos">
         <input type="submit" class="btn btn-danger" name="baja" value="Darme de baja">
         <input type="submit" class="btn btn-info" name="albumes" value="Mis álbumes">
         <input type="submit" class="btn btn-success" name="nuevoalbum" value="Crear álbum">
