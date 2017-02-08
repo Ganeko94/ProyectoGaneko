@@ -9,6 +9,10 @@
 session_start();
 require_once '../Modelo/Usuario.php';
 
+if($_SESSION["usuario"] == null){
+    header('Location: ../index.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +31,8 @@ require_once '../Modelo/Usuario.php';
         <p style="text-align: center"><input type="submit" class="btn btn-info" name="datos" value="Mis datos">
         <input type="submit" class="btn btn-danger" name="baja" value="Darme de baja">
         <input type="submit" class="btn btn-info" name="albumes" value="Mis álbumes">
-        <input type="submit" class="btn btn-success" name="nuevoalbum" value="Crear álbum">
-        <input type="submit" class="btn btn-success" name="nuevafoto" value="Añadir foto a álbum">
+        <input type="submit" class="btn btn-success" name="nuevoalbum" value="Crear album">
+        <input type="submit" class="btn btn-success" name="nuevafoto" value="Añadir foto a album">
         <input type="submit" class="btn btn-warning" name="cerrarsesion" value="Cerrar Sesión"></p>
     </form>
 </div>

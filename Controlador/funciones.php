@@ -115,9 +115,11 @@ class funciones{
         $fecha  = $_POST["fecha"];
         $ciudad  = $_POST["ciudad"];
         $pais  = $_POST["pais"];
-        $foto  = $_POST["foto"];
+        $archivoFoto  = $_FILES['foto']['tmp_name'];
+        $destinoFoto = "../Fotos/".$_FILES['foto']['name'];
+        move_uploaded_file($archivoFoto, $destinoFoto);
 
-        $usuario = new Usuario($nomusuario, $contrasena ,$email ,$fecha ,$ciudad ,$pais ,$foto);
+        $usuario = new Usuario($nomusuario, $contrasena ,$email ,$fecha ,$ciudad ,$pais , $destinoFoto);
 
         $consulta = "INSERT INTO Usuario (NomUsuario, Contrasena, Email, FNacimiento, Ciudad, Pais, Foto) VALUES ('".$usuario->getNomusuario()."', '".$usuario->getContrasena()."', '".$usuario->getEmail()."', '".$usuario->getFnacimiento()."', '".$usuario->getCiudad()."', '".$usuario->getPais()."', '".$usuario->getFoto()."')";
 
@@ -157,6 +159,37 @@ class funciones{
         $_SESSION["usuario"] = serialize($user);
 
         desconectar($conexion);
+
+        header('Location: ../Vista/Principal.php');
+    }
+
+    public static function nuevoAlbum(){
+
+        try{
+        require_once '../Modelo/Album.php';
+        require_once '../Modelo/Usuario.php';
+        require_once '../Modelo/GenericoBD.php';
+
+        $conexion = conectar();
+
+        $titulo = $_POST["titulo"];
+        $descripcion = $_POST["descripcion"];
+        $fecha  = $_POST["fecha"];
+        $pais  = $_POST["pais"];
+
+        $user = unserialize($_SESSION["usuario"]);
+
+        $nombre  = $user->getNomusuario();
+
+        $album = new Album($titulo, $descripcion ,$fecha ,$pais ,$nombre);
+
+        $consulta = "INSERT INTO Album (Titulo, Descripcion, Fecha, Pais, Usuario) VALUES ('".$album->getTitulo()."', '".$album->getDescripcion()."', '".$album->getFecha()."', '".$album->getPais()."', '".$album->getUsuario()."')";
+
+        mysqli_query($conexion, $consulta);
+
+        desconectar($conexion);
+        }catch (Exception $e){echo $e;}
+
     }
 
 }

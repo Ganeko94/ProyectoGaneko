@@ -26,7 +26,7 @@ abstract class Registro
 
         <h3>Por favor, introduce tus datos para registrarte</h3>
 
-        <form action="router.php" method="post">
+        <form action="router.php" method="post" enctype="multipart/form-data">
         <p>Usuario: <input type="text" name="usuario"></p>
         <p>Contraseña: <input type="password" name="contrasena"></p>
         <p>Email: <input type="text" name="email"></p>
@@ -41,7 +41,7 @@ abstract class Registro
         ?>
                 </select></p>
 
-            <p>Foto: <input type="text" name="foto"></p>
+            <p>Foto: <input type="file" name="foto" accept="image/*"></p>
 
             <input type="submit" name="registrar" value="Registrar">
             <input type="submit" name="cancelar1" value="Cancelar">

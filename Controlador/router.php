@@ -39,7 +39,7 @@ require_once "../Vista/Views.php";
     }
 
     if(isset($_POST["update"])){
-        Views::misDatos();
+        funciones::modificarUsuario();
     }
 
     if(isset($_POST["baja"])){
@@ -50,9 +50,19 @@ require_once "../Vista/Views.php";
             funciones::darBaja();
             header('Location: ../index.php');
         }
-
-
     }
 
+    if(isset($_POST["nuevoalbum"])){
+        if($_POST["nuevoalbum"] == "Crear album"){
+            Views::crearAlbum();
+        }
+        elseif($_POST["nuevoalbum"] == "Crear"){
+            funciones::nuevoAlbum();
+            header('Location: ../Vista/Principal.php');
+        }
+    }
 
-
+    if(isset($_POST["cerrarsesion"])){
+        $_SESSION["usuario"] = null;
+        header('Location: ../index.php');
+    }
