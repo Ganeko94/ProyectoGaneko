@@ -16,33 +16,26 @@ require_once "../Vista/Views.php";
     if(isset($_POST["entrar"])){
         funciones::iniciosesion();
     }
-
-    if(isset($_POST["registrarse"])){
+    elseif(isset($_POST["registrarse"])){
         Registro::formularioRegistro();
     }
-
-    if(isset($_POST["registrar"])){
+    elseif(isset($_POST["registrar"])){
         funciones::registrarusuario();
         funciones::iniciosesion();
     }
-
-    if(isset($_POST["cancelar1"])){
+    elseif(isset($_POST["cancelar1"])){
         header('Location: ../index.php');
     }
-
-    if(isset($_POST["cancelar2"])){
+    elseif(isset($_POST["cancelar2"])){
         header('Location: ../Vista/Principal.php');
     }
-
-    if(isset($_POST["datos"])){
+    elseif(isset($_POST["datos"])){
         Views::misDatos();
     }
-
-    if(isset($_POST["update"])){
+    elseif(isset($_POST["update"])){
         funciones::modificarUsuario();
     }
-
-    if(isset($_POST["baja"])){
+    elseif(isset($_POST["baja"])){
         if($_POST["baja"] == "Darme de baja"){
             Views::ventanaBaja();
         }
@@ -51,8 +44,10 @@ require_once "../Vista/Views.php";
             header('Location: ../index.php');
         }
     }
-
-    if(isset($_POST["nuevoalbum"])){
+    elseif(isset($_POST["albumes"])){
+        Views::misAlbumes();
+    }
+    elseif(isset($_POST["nuevoalbum"])){
         if($_POST["nuevoalbum"] == "Crear album"){
             Views::crearAlbum();
         }
@@ -61,8 +56,7 @@ require_once "../Vista/Views.php";
             header('Location: ../Vista/Principal.php');
         }
     }
-
-    if(isset($_POST["cerrarsesion"])){
+    elseif(isset($_POST["cerrarsesion"])){
         $_SESSION["usuario"] = null;
         header('Location: ../index.php');
     }

@@ -33,7 +33,6 @@ abstract class Views
         <form action="router.php" method="post" enctype="multipart/form-data">
             <p>Usuario: <input type="text" name="usuario" value="<?php $user = unserialize($_SESSION["usuario"]); echo $user->getNomusuario();?>" disabled></p>
             <p>Contraseña: <input type="password" name="contrasena" value="<?php echo $user->getContrasena();?>"></p>
-            <p><img src="<?php echo $user->getFoto(); ?>"></p>
             <p>Email: <input type="text" name="email" value="<?php echo $user->getEmail();?>"></p>
             <p>Fecha <input type="date" name="fecha" min="1900-01-01" max="<?php echo date("Y-m-d");?>" value="<?php echo $user->getFnacimiento();?>"></p>
             <p>Ciudad: <input type="text" name="ciudad" value="<?php echo $user->getCiudad();?>"></p>
@@ -50,7 +49,7 @@ abstract class Views
                 }
             ?>
                 </select></p>
-
+            <p><img width="200px" src="<?php echo $user->getFoto(); ?>"></p>
             <p>Foto: <input type="file" name="foto" accept="image/*" value="<?php echo $user->getFoto();?>"></p>
 
             <input type="submit" name="update" value="Guardar Cambios">
@@ -112,6 +111,43 @@ abstract class Views
 
             <input type="submit" name="nuevoalbum" value="Crear">
             <input type="submit" name="cancelar2" value="Cancelar">
+        </form>
+        </body>
+        </html>
+        <?php
+    }
+
+    public static function misAlbumes()
+    {
+        ?>
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>Mis álbumes</title>
+        </head>
+        <body>
+        <h1>Listado de álbumes</h1>
+
+        <form action="router.php" method="post">
+            <?php
+            funciones::sacarAlbumes();
+            if($_SESSION["albumes"] == null){
+                echo "No hay albumes de este usuario";
+            }
+            else{
+                echo '<h3>Selecciona el Álbum que quieres ver.</h3>';
+                echo "<table border='1'><tr><th>Album</th><th>Fecha</th><th>Descripcion</th><th>Ver album</th></tr>";
+                for ($x = 0; $x < count($_SESSION["albumes"]); $x++) {
+                    ?><tr><td><?php echo $_SESSION["albumes"][$x]->getTitulo();?></td><td><?php echo $_SESSION["albumes"][$x]->getFecha();?></td><td><?php echo $_SESSION["albumes"][$x]->getDescripcion();?></td><td> <a href="#">Enlace vacio</a></td></tr><?php
+                }
+                echo "</table>";
+            }
+
+            ?>
+            </table>
+            <br/>
+            <input type="submit" name="cancelar2" value="Volver">
         </form>
         </body>
         </html>

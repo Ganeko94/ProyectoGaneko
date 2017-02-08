@@ -14,8 +14,6 @@ class funciones{
 
         require_once '../Modelo/Pais.php';
 
-
-
         $conexion = conectar();
 
         $consulta = "SELECT * FROM Pais";
@@ -36,6 +34,35 @@ class funciones{
             $fila = mysqli_fetch_object($resultado);
         }
         $_SESSION["paises"] = $paises;
+
+        desconectar($conexion);
+
+    }
+
+    public static function sacarAlbumes(){
+
+        require_once '../Modelo/Album.php';
+
+        $conexion = conectar();
+
+        $user = unserialize($_SESSION["usuario"]);
+
+        $consulta = "SELECT * FROM Album WHERE Usuario = '".$user->getNomusuario()."'";
+
+        $resultado = mysqli_query($conexion, $consulta);
+
+        $fila = mysqli_fetch_object($resultado);
+
+        $albumes = [];
+
+        while($fila != null)
+        {
+            $album = new Album($fila->Titulo, $fila->Descripcion, $fila->Fecha, $fila->Pais, $fila->Usuario);
+
+            array_push($albumes, $album);
+            $fila = mysqli_fetch_object($resultado);
+        }
+        $_SESSION["albumes"] = $albumes;
 
         desconectar($conexion);
 
@@ -141,14 +168,16 @@ class funciones{
         $fecha  = $_POST["fecha"];
         $ciudad  = $_POST["ciudad"];
         $pais  = $_POST["pais"];
-        $foto  = $_POST["foto"];
+        $archivoFoto  = $_FILES['foto']['tmp_name'];
+        $destinoFoto = "../Fotos/".$_FILES['foto']['name'];
+        move_uploaded_file($archivoFoto, $destinoFoto);
 
         $user->setContrasena($contrasena);
         $user->setEmail($email);
         $user->setFnacimiento($fecha);
         $user->setCiudad($ciudad);
         $user->setPais($pais);
-        $user->setFoto($foto);
+        $user->setFoto($destinoFoto);
 
         $conexion = conectar();
 
