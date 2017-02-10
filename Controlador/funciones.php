@@ -129,7 +129,6 @@ class funciones{
 
     public static function registrarusuario(){
 
-
         require_once '../Modelo/Usuario.php';
         require_once '../Modelo/GenericoBD.php';
 
@@ -218,6 +217,41 @@ class funciones{
 
         desconectar($conexion);
         }catch (Exception $e){echo $e;}
+
+    }
+
+    public static function buscarAlbum(){
+
+        require_once '../Modelo/Album.php';
+        require_once '../Modelo/GenericoBD.php';
+
+        $conexion = conectar();
+
+        $titulo = $_POST["album"];
+
+        $consulta = "SELECT * FROM Album WHERE Titulo ='".$titulo."'";
+
+        $resultado = mysqli_query($conexion, $consulta);
+
+        if ($resultado->num_rows !=0)
+        {
+            $fila = mysqli_fetch_object($resultado);
+
+            /* Creo el objeto album, para pasarlo a session */
+
+            $album = new Album($fila->Titulo, $fila->Descripcion, $fila->Fecha, $fila->Pais, $fila->Usuario);
+
+            //session_start();
+
+            $_SESSION["album"] = serialize($album);
+            desconectar($conexion);
+            return true;
+
+        }else{
+            desconectar($conexion);
+            return false;
+        }
+
 
     }
 

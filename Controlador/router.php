@@ -47,13 +47,22 @@ require_once "../Vista/Views.php";
     elseif(isset($_POST["albumes"])){
         Views::misAlbumes();
     }
+    elseif(isset($_POST["veralbum"])){
+        if(funciones::buscarAlbum()){
+            Views::vistaAlbum();
+        }else{
+            header('Location: ../Vista/Principal.php');
+        }
+
+
+    }
     elseif(isset($_POST["nuevoalbum"])){
         if($_POST["nuevoalbum"] == "Crear album"){
             Views::crearAlbum();
         }
         elseif($_POST["nuevoalbum"] == "Crear"){
             funciones::nuevoAlbum();
-            header('Location: ../Vista/Principal.php');
+
         }
     }
     elseif(isset($_POST["cerrarsesion"])){

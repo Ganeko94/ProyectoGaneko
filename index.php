@@ -8,7 +8,11 @@
 
 require_once "Vista/Inicio.php";
 
-session_abort();
+if(isset($_SESSION["usuario"])){
+    $_SESSION["usuario"] = null;
+    session_destroy();
+
+}
 
 Inicio::formularioInicio();
 

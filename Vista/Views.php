@@ -16,13 +16,8 @@ abstract class Views
 
     public static function misDatos()
     {
+        Cabecera::mostrarCabecera("Mis datos");
         ?>
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <title>Registro</title>
-        </head>
         <body>
         <h1>Datos Personales</h1>
 
@@ -61,13 +56,8 @@ abstract class Views
     }
 
     public static function ventanaBaja(){
+        Cabecera::mostrarCabecera("Baja");
         ?>
-            <!DOCTYPE html>
-            <html lang="es">
-            <head>
-                <meta charset="UTF-8">
-                <title>Login</title>
-            </head>
             <body>
             <h1>Dar de baja</h1>
 
@@ -84,13 +74,8 @@ abstract class Views
 
     public static function crearAlbum()
     {
+        Cabecera::mostrarCabecera("Crear Album");
         ?>
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <title>Crear Album</title>
-        </head>
         <body>
         <h1>Crea un nuevo Album</h1>
 
@@ -119,17 +104,12 @@ abstract class Views
 
     public static function misAlbumes()
     {
+        Cabecera::mostrarCabecera("Mis álbumes");
         ?>
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <title>Mis álbumes</title>
-        </head>
         <body>
         <h1>Listado de álbumes</h1>
 
-        <form action="router.php" method="post">
+
             <?php
             funciones::sacarAlbumes();
             if($_SESSION["albumes"] == null){
@@ -137,17 +117,35 @@ abstract class Views
             }
             else{
                 echo '<h3>Selecciona el Álbum que quieres ver.</h3>';
-                echo "<table border='1'><tr><th>Album</th><th>Fecha</th><th>Descripcion</th><th>Ver album</th></tr>";
+                echo "<form action='router.php' method='post'><table class='table' border='1'><tr><th>Album</th><th>Fecha</th><th>Descripcion</th><th>Ver album</th></tr>";
                 for ($x = 0; $x < count($_SESSION["albumes"]); $x++) {
-                    ?><tr><td><?php echo $_SESSION["albumes"][$x]->getTitulo();?></td><td><?php echo $_SESSION["albumes"][$x]->getFecha();?></td><td><?php echo $_SESSION["albumes"][$x]->getDescripcion();?></td><td> <a href="#">Enlace vacio</a></td></tr><?php
+                    ?><tr><td><?php echo $_SESSION["albumes"][$x]->getTitulo();?></td><td><?php echo $_SESSION["albumes"][$x]->getFecha();?></td><td><?php echo $_SESSION["albumes"][$x]->getDescripcion();?></td><td><input type="submit" name="veralbum" value="Ver Album"><input type="hidden" name="album" value="<?php echo $_SESSION["albumes"][$x]->getTitulo();?>" </td></tr><?php
                 }
-                echo "</table>";
+                echo "</table></form>";
             }
 
             ?>
             </table>
             <br/>
-            <input type="submit" name="cancelar2" value="Volver">
+            <form action="router.php" method="post">
+                <input type="submit" name="cancelar2" value="Volver">
+            </form>
+
+        </body>
+        </html>
+        <?php
+    }
+
+    public static function vistaAlbum(){
+        Cabecera::mostrarCabecera("Album");
+        ?>
+        <body>
+        <h1>Vista de álbum</h1>
+
+        <?php $album = unserialize($_SESSION["album"]); echo "Titulo: ".$album->getTitulo(); ?>
+
+        <form action="router.php" method="post" enctype="multipart/form-data">
+            <input type="submit" name="cancelar2" value="Salir">
         </form>
         </body>
         </html>
