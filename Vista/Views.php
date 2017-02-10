@@ -119,7 +119,7 @@ abstract class Views
                 echo '<h3>Selecciona el Álbum que quieres ver.</h3>';
                 echo "<form action='router.php' method='post'><table class='table' border='1'><tr><th>Album</th><th>Fecha</th><th>Descripcion</th><th>Ver album</th></tr>";
                 for ($x = 0; $x < count($_SESSION["albumes"]); $x++) {
-                    ?><tr><td><?php echo $_SESSION["albumes"][$x]->getTitulo();?></td><td><?php echo $_SESSION["albumes"][$x]->getFecha();?></td><td><?php echo $_SESSION["albumes"][$x]->getDescripcion();?></td><td><input type="submit" name="veralbum" value="Ver Album"><input type="hidden" name="album" value="<?php echo $_SESSION["albumes"][$x]->getTitulo();?>" </td></tr><?php
+                    ?><tr><td><?php echo $_SESSION["albumes"][$x]->getTitulo();?></td><td><?php echo $_SESSION["albumes"][$x]->getFecha();?></td><td><?php echo $_SESSION["albumes"][$x]->getDescripcion();?></td><td><input type="submit" name="veralbum" value="Ver Album"><input type="hidden" name="album" value="<?php echo $_SESSION["albumes"][$x]->getIdalbum();?>" </td></tr><?php
                 }
                 echo "</table></form>";
             }
@@ -142,9 +142,64 @@ abstract class Views
         <body>
         <h1>Vista de álbum</h1>
 
-        <?php $album = unserialize($_SESSION["album"]); echo "Titulo: ".$album->getTitulo(); ?>
-
+        <?php $album = unserialize($_SESSION["album"]);?>
+        <p>Titulo: <?php echo $album->getTitulo();?></p>
+        <p>Descripcion: <?php echo $album->getDescripcion();?></p>
+        <p>Fecha: <?php echo $album->getFecha();?></p>
+        <p>Pais: <?php echo $album->getPais();?></p>
+        <?php funciones::sacarFotos();
+            for ($x = 0; $x < count($_SESSION["fotos"]); $x++) {
+                ?><img height="350px" src="<?php echo $_SESSION["fotos"][$x]->getFichero();?>"><?php
+            }
+        ?>
         <form action="router.php" method="post" enctype="multipart/form-data">
+            <input type="submit" name="cancelar2" value="Salir">
+        </form>
+        </body>
+        </html>
+        <?php
+    }
+
+    public static function subidaFoto(){
+        Cabecera::mostrarCabecera("Subir foto");
+        ?>
+        <body>
+        <h1>Subir foto</h1>
+        <h3>Selecciona el album al que quieres subir la foto</h3>
+        <form action="router.php" method="post" enctype="multipart/form-data">
+            <p>Titulo de la foto: <input type="text" name="titulo"></p>
+            <p>Fecha <input type="date" name="fecha" min="1900-01-01" max="<?php echo date("Y-m-d");?>"></p>
+            <p>Album: <select name="album">
+            <?php
+            funciones::sacarAlbumes();
+            if($_SESSION["albumes"] == null){
+                    echo "No hay albumes de este usuario";
+            }
+            else
+            {
+                for ($x = 0; $x < count($_SESSION["albumes"]); $x++) {
+
+                    ?>
+                    <option value="<?php echo $_SESSION["albumes"][$x]->getIdalbum();?>"><?php echo $_SESSION["albumes"][$x]->getTitulo();?></option>
+                    <?php
+
+                }
+
+            }
+
+            ?>
+            </select></p>
+            <p>Pais: <select name="pais">
+            <?php
+            funciones::sacarPaises();
+                for ($x = 0; $x < count($_SESSION["paises"]); $x++) {
+                    ?><option value ="<?php echo $_SESSION["paises"][$x]->getIdPais();?>"><?php echo $_SESSION["paises"][$x]->getNomPais();?></option ><?php
+                }
+            ?>
+            </select></p>
+
+            <p>Foto: <input type="file" name="foto" accept="image/*"></p>
+            <input type="submit" name="anadirfoto" value="Añadir Foto">
             <input type="submit" name="cancelar2" value="Salir">
         </form>
         </body>

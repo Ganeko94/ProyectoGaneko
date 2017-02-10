@@ -6,7 +6,7 @@
  * Time: 12:52
  */
 
-
+require_once "Controlador/funciones.php";
 
 class Inicio{
 
@@ -51,6 +51,14 @@ class Inicio{
                                     </div>
                                 </div>
                         </form>
+                    </div>
+                    <div class="fotos">
+                        <?php
+                        funciones::sacarUltimasFotos();
+                        for($x = 0; $x < count($_SESSION["ultimas"]); $x++){
+                            ?><img height="150px" src="<?php echo $_SESSION["ultimas"][$x]->getFichero();?>"><?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

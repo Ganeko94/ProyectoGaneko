@@ -53,8 +53,13 @@ require_once "../Vista/Views.php";
         }else{
             header('Location: ../Vista/Principal.php');
         }
-
-
+    }
+    elseif(isset($_POST["nuevafoto"])){
+            Views::subidaFoto();
+    }
+    elseif(isset($_POST["anadirfoto"])){
+        funciones::subirFoto();
+        header('Location: ../Vista/Principal.php');
     }
     elseif(isset($_POST["nuevoalbum"])){
         if($_POST["nuevoalbum"] == "Crear album"){
@@ -62,7 +67,7 @@ require_once "../Vista/Views.php";
         }
         elseif($_POST["nuevoalbum"] == "Crear"){
             funciones::nuevoAlbum();
-
+            header('Location: ../Vista/Principal.php');
         }
     }
     elseif(isset($_POST["cerrarsesion"])){

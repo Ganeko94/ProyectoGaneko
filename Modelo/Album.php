@@ -8,6 +8,7 @@
 
 class Album{
 
+    private $idalbum;
     private $titulo;
     private $descripcion;
     private $fecha;
@@ -30,6 +31,23 @@ class Album{
         $this->pais = $pais;
         $this->usuario = $usuario;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIdalbum()
+    {
+        return $this->idalbum;
+    }
+
+    /**
+     * @param mixed $idalbum
+     */
+    public function setIdalbum($idalbum)
+    {
+        $this->idalbum = $idalbum;
+    }
+
 
     /**
      * @return mixed

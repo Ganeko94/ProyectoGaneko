@@ -24,14 +24,13 @@ class Foto{
      * @param $fichero
      * @param $fregistro
      */
-    public function __construct($titulo, $fecha, $pais, $album, $fichero, $fregistro)
+    public function __construct($titulo, $fecha, $pais, $album, $fichero)
     {
         $this->titulo = $titulo;
         $this->fecha = $fecha;
         $this->pais = $pais;
         $this->album = $album;
         $this->fichero = $fichero;
-        $this->fregistro = $fregistro;
     }
 
     /**

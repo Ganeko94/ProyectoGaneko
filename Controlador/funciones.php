@@ -58,11 +58,65 @@ class funciones{
         while($fila != null)
         {
             $album = new Album($fila->Titulo, $fila->Descripcion, $fila->Fecha, $fila->Pais, $fila->Usuario);
-
+            $album->setIdalbum($fila->IdAlbum);
             array_push($albumes, $album);
             $fila = mysqli_fetch_object($resultado);
         }
         $_SESSION["albumes"] = $albumes;
+
+        desconectar($conexion);
+
+    }
+
+    public static function sacarFotos(){
+
+        require_once '../Modelo/Foto.php';
+
+        $conexion = conectar();
+
+        $album = unserialize($_SESSION["album"]);
+
+        $consulta = "SELECT * FROM Foto WHERE Album = '".$album->getIdalbum()."'";
+
+        $resultado = mysqli_query($conexion, $consulta);
+
+        $fila = mysqli_fetch_object($resultado);
+
+        $fotos = [];
+
+        while($fila != null)
+        {
+            $foto = new Foto($fila->Titulo, $fila->Fecha, $fila->Pais, $fila->Album, $fila->Fichero);
+            array_push($fotos, $foto);
+            $fila = mysqli_fetch_object($resultado);
+        }
+        $_SESSION["fotos"] = $fotos;
+
+        desconectar($conexion);
+
+    }
+
+    public static function sacarUltimasFotos(){
+
+        require_once '../Modelo/Foto.php';
+
+        $conexion = conectar();
+
+        $consulta = "SELECT * FROM Foto ORDER BY Fecha DESC LIMIT 5";
+
+        $resultado = mysqli_query($conexion, $consulta);
+
+        $fila = mysqli_fetch_object($resultado);
+
+        $fotos = [];
+
+        while($fila != null)
+        {
+            $foto = new Foto($fila->Titulo, $fila->Fecha, $fila->Pais, $fila->Album, $fila->Fichero);
+            array_push($fotos, $foto);
+            $fila = mysqli_fetch_object($resultado);
+        }
+        $_SESSION["ultimas"] = $fotos;
 
         desconectar($conexion);
 
@@ -227,9 +281,9 @@ class funciones{
 
         $conexion = conectar();
 
-        $titulo = $_POST["album"];
+        $id = $_POST["album"];
 
-        $consulta = "SELECT * FROM Album WHERE Titulo ='".$titulo."'";
+        $consulta = "SELECT * FROM Album WHERE IdAlbum ='".$id."'";
 
         $resultado = mysqli_query($conexion, $consulta);
 
@@ -240,7 +294,7 @@ class funciones{
             /* Creo el objeto album, para pasarlo a session */
 
             $album = new Album($fila->Titulo, $fila->Descripcion, $fila->Fecha, $fila->Pais, $fila->Usuario);
-
+            $album->setIdalbum($fila->IdAlbum);
             //session_start();
 
             $_SESSION["album"] = serialize($album);
@@ -252,6 +306,32 @@ class funciones{
             return false;
         }
 
+
+    }
+
+    public static function subirFoto(){
+
+        require_once '../Modelo/Foto.php';
+        require_once '../Modelo/GenericoBD.php';
+
+        $conexion = conectar();
+
+        $titulo = $_POST["titulo"];
+        $fecha = $_POST["fecha"];
+        $pais = $_POST["pais"];
+        $album  = $_POST["album"];
+
+        $archivoFoto  = $_FILES['foto']['tmp_name'];
+        $destinoFoto = "../Fotos/".$_FILES['foto']['name'];
+        move_uploaded_file($archivoFoto, $destinoFoto);
+
+        $foto = new Foto($titulo, $fecha ,$pais ,$album, $destinoFoto);
+
+        $consulta = "INSERT INTO Foto (Titulo, Fecha, Pais, Album, Fichero) VALUES ('".$foto->getTitulo()."', '".$foto->getFecha()."', '".$foto->getPais()."', '".$foto->getAlbum()."', '".$foto->getFichero()."')";
+
+        mysqli_query($conexion, $consulta);
+
+        desconectar($conexion);
 
     }
 
