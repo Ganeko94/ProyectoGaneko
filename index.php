@@ -6,4 +6,3 @@
  * Time: 12:00
  */
     header('Location: Vista/index.php');
-?>
