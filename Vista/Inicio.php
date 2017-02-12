@@ -6,11 +6,11 @@
  * Time: 12:52
  */
 
-require_once "Controlador/funciones.php";
+require_once "../Controlador/funciones.php";
 
 class Inicio{
 
-        public static function formularioInicio($texto = '', $ruta = 'Controlador/router.php', $ruta2 = 'Vista/CSS/')
+        public static function formularioInicio($texto = '', $ruta = '../Controlador/router.php', $ruta2 = 'CSS/')
         {
             ?>
             <!DOCTYPE html>

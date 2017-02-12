@@ -335,4 +335,34 @@ class funciones{
 
     }
 
+    public static function buscarFotos(){
+
+        require_once '../Modelo/Foto.php';
+        require_once '../Modelo/GenericoBD.php';
+
+        $conexion = conectar();
+
+        $titulo = $_POST["titulo"];
+
+        $consulta = "SELECT * FROM Foto WHERE Titulo LIKE '%".$titulo."%'";
+
+        $resultado = mysqli_query($conexion, $consulta);
+
+        $fila = mysqli_fetch_object($resultado);
+
+        $busqueda = [];
+
+        while($fila != null)
+        {
+            $foto = new Foto($fila->Titulo, $fila->Fecha, $fila->Pais, $fila->Album, $fila->Fichero);
+            array_push($busqueda, $foto);
+            $fila = mysqli_fetch_object($resultado);
+        }
+        $_SESSION["busqueda"] = $busqueda;
+
+        desconectar($conexion);
+
+
+    }
+
 }
