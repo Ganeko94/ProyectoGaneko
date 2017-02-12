@@ -184,7 +184,7 @@ abstract class Views
         </table>
         <br/>
         <form action="router.php" method="post">
-            <input type="submit" name="cancelar2" value="Volver">
+            <input type="submit" name="cancelar1" value="Volver">
         </form>
 
         </body>
