@@ -160,6 +160,38 @@ abstract class Views
         <?php
     }
 
+    public static function busquedaFotos(){
+        Cabecera::mostrarCabecera("Busqueda Fotos");
+        ?>
+        <body>
+        <h1>Listado de fotos buscadas</h1>
+
+
+        <?php
+        funciones::buscarFotos();
+        if($_SESSION["busqueda"] == null){
+            echo "No hay fotos que coincidan";
+        }
+        else{
+            echo "<table class='table' border='1'><tr><th>Titulo</th><th>Fecha</th><th>Foto</th></tr>";
+            for ($x = 0; $x < count($_SESSION["busqueda"]); $x++) {
+                ?><tr><td><?php echo $_SESSION["busqueda"][$x]->getTitulo();?></td><td><?php echo $_SESSION["busqueda"][$x]->getFecha();?></td><td><img height="250px" src="<?php echo $_SESSION["busqueda"][$x]->getFichero();?>"></td></tr><?php
+            }
+            echo "</table></form>";
+        }
+
+        ?>
+        </table>
+        <br/>
+        <form action="router.php" method="post">
+            <input type="submit" name="cancelar2" value="Volver">
+        </form>
+
+        </body>
+        </html>
+        <?php
+    }
+
     public static function subidaFoto(){
         Cabecera::mostrarCabecera("Subir foto");
         ?>

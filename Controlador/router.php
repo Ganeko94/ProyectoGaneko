@@ -29,6 +29,9 @@ require_once "../Vista/Views.php";
     elseif(isset($_POST["cancelar2"])){
         header('Location: ../Vista/Principal.php');
     }
+    if(isset($_POST["buscarfoto"])){
+        Views::busquedaFotos();
+    }
     elseif(isset($_POST["datos"])){
         Views::misDatos();
     }

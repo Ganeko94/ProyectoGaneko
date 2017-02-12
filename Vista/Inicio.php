@@ -52,13 +52,33 @@ class Inicio{
                                 </div>
                         </form>
                     </div>
-                    <div class="fotos">
-                        <?php
-                        funciones::sacarUltimasFotos();
-                        for($x = 0; $x < count($_SESSION["ultimas"]); $x++){
-                            ?><img height="150px" src="<?php echo $_SESSION["ultimas"][$x]->getFichero();?>"><?php
-                        }
-                        ?>
+                    <div class="container">
+                    <form class="form-horizontal col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-lg-6 col-lg-offset-3 well" action="<?php echo $ruta;?>" method="post">
+                        <div class="form-group">
+                            <label for="titulo" class="col-sm-2 control-label">Busqueda de fotos</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="titulo" class="form-control" id="titulo" placeholder="Fotos a buscar">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-offset-4 col-xs-6" style="margin-top: 10px">
+                                <input type="submit" name="buscarfoto" class="btn btn-default" value="Buscar">
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+
+                    <div class="container fotos">
+                        <div class="well col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-lg-10 col-lg-offset-1 ">
+                            <h2>Ultimas fotos subidas</h2>
+                            <?php
+                            funciones::sacarUltimasFotos();
+                            for($x = 0; $x < count($_SESSION["ultimas"]); $x++){
+                                ?><img height="150px" src="<?php echo $_SESSION["ultimas"][$x]->getFichero();?>"><?php
+                            }
+                            ?>
+                        </div>
+
                     </div>
                 </div>
             </div>
