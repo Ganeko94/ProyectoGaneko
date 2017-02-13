@@ -9,19 +9,18 @@
 require_once "../Vista/Registro.php";
 require_once "../Vista/Exito.php";
 require_once "../Vista/Views.php";
-
-
+require_once "UsuarioBD.php";
 
 
     if(isset($_POST["entrar"])){
-        funciones::iniciosesion();
+        UsuarioBD::iniciosesion();
     }
     elseif(isset($_POST["registrarse"])){
         Registro::formularioRegistro();
     }
     elseif(isset($_POST["registrar"])){
-        funciones::registrarusuario();
-        funciones::iniciosesion();
+        UsuarioBD::registrarusuario();
+        UsuarioBD::iniciosesion();
     }
     elseif(isset($_POST["cancelar1"])){
         header('Location: ../index.php');
@@ -36,14 +35,14 @@ require_once "../Vista/Views.php";
         Views::misDatos();
     }
     elseif(isset($_POST["update"])){
-        funciones::modificarUsuario();
+        UsuarioBD::modificarUsuario();
     }
     elseif(isset($_POST["baja"])){
         if($_POST["baja"] == "Darme de baja"){
             Views::ventanaBaja();
         }
         elseif($_POST["baja"] == "Borrar"){
-            funciones::darBaja();
+            UsuarioBD::darBaja();
             header('Location: ../index.php');
         }
     }
@@ -51,7 +50,7 @@ require_once "../Vista/Views.php";
         Views::misAlbumes();
     }
     elseif(isset($_POST["veralbum"])){
-        if(funciones::buscarAlbum()){
+        if(AlbumBD::buscarAlbum()){
             Views::vistaAlbum();
         }else{
             header('Location: ../Vista/Principal.php');
@@ -61,7 +60,7 @@ require_once "../Vista/Views.php";
             Views::subidaFoto();
     }
     elseif(isset($_POST["anadirfoto"])){
-        funciones::subirFoto();
+        FotoBD::subirFoto();
         header('Location: ../Vista/Principal.php');
     }
     elseif(isset($_POST["nuevoalbum"])){
@@ -69,7 +68,7 @@ require_once "../Vista/Views.php";
             Views::crearAlbum();
         }
         elseif($_POST["nuevoalbum"] == "Crear"){
-            funciones::nuevoAlbum();
+            AlbumBD::nuevoAlbum();
             header('Location: ../Vista/Principal.php');
         }
     }

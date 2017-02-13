@@ -6,7 +6,8 @@
  * Time: 13:02
  */
 
-require_once "funciones.php";
+require_once "../Controlador/PaisBD.php";
+require_once "../Modelo/Pais.php";
 
 abstract class Registro
 {
@@ -14,41 +15,50 @@ abstract class Registro
 
     public static function formularioRegistro()
     {
+        Cabecera::mostrarCabecera("Subir foto");
         ?>
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <title>Registro</title>
-        </head>
-        <body>
-        <h1>Registro</h1>
-
-        <h3>Por favor, introduce tus datos para registrarte</h3>
-
-        <form action="router.php" method="post" enctype="multipart/form-data">
-        <p>Usuario: <input type="text" name="usuario"></p>
-        <p>Contraseña: <input type="password" name="contrasena"></p>
-        <p>Email: <input type="text" name="email"></p>
-        <p>Fecha <input type="date" name="fecha" min="1900-01-01" max="<?php echo date("Y-m-d");?>"></p>
-        <p>Ciudad: <input type="text" name="ciudad"></p>
-        <p>Pais: <select name="pais">
+        <div class="container">
+            <div class="text-center">
+                <h1>Registro</h1>
+                <h3>Por favor, introduce tus datos para registrarte</h3>
+            </div>
+            <form action="router.php" method="post" enctype="multipart/form-data">
+                <div class="col-xs-12 col-xs-8 col-md-6">
+                    <label for="usuario">Usuario: </label><input type="text" class="form-control" id="usuario" name="usuario"><br />
+                </div>
+                <div class="col-xs-12 col-xs-8 col-md-6">
+                        <label for="pass">Contraseña: </label><input id="pass" class="form-control" type="password" name="contrasena"><br />
+                </div>
+                <div class="col-xs-12 col-xs-8 col-md-6">
+                    <label for="email">Email: </label><input type="text" class="form-control" name="email"><br />
+                </div>
+                <div class="col-xs-12 col-xs-8 col-md-6">
+                    <label for="fecha">Fecha </label><input type="date" name="fecha" id="fecha" class="form-control" min="1900-01-01" max="<?php echo date("Y-m-d");?>"><br />
+                </div>
+                <div class="col-xs-12 col-xs-8 col-md-6">
+                    <label for="ciudad">Ciudad: </label><input type="text" id="ciudad" class="form-control" name="ciudad">
+                </div>
+                <div class="col-xs-12 col-xs-8 col-md-6">
+                     <label for="pais">Pais: </label><select name="pais" class="form-control">
+                        <?php
+                        PaisBD::sacarPaises();
+                        for ($x = 0; $x < count($_SESSION["paises"]); $x++) {
+                            ?><option value ="<?php echo $_SESSION["paises"][$x]->getIdPais();?>"><?php echo $_SESSION["paises"][$x]->getNomPais();?></option ><?php
+                        }
+                     ?>
+                    </select><br />
+                </div>
+                <div class="col-xs-12 col-xs-8 col-md-6">
+                    <label for="foto">Foto: </label><input type="file" class="form-control" name="foto" accept="image/*"><br />
+                </div>
+                <div class="text-center" style="margin-top: 30px">
+                    <input type="submit" class="btn btn-primary" name="registrar" value="Registrar">
+                    <input type="submit" class="btn btn-default" name="cancelar1" value="Cancelar">
+                </div>
+            </form>
+        </div>
         <?php
-        funciones::sacarPaises();
-            for ($x = 0; $x < count($_SESSION["paises"]); $x++) {
-                ?><option value ="<?php echo $_SESSION["paises"][$x]->getIdPais();?>"><?php echo $_SESSION["paises"][$x]->getNomPais();?></option ><?php
-            }
-        ?>
-                </select></p>
-
-            <p>Foto: <input type="file" name="foto" accept="image/*"></p>
-
-            <input type="submit" name="registrar" value="Registrar">
-            <input type="submit" name="cancelar1" value="Cancelar">
-        </form>
-        </body>
-        </html>
-        <?php
+        Pie::mostrarPie();
     }
 
 }

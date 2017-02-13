@@ -16,7 +16,8 @@ class Cabecera{
                     <title>'.$titulo.'</title>
                     <link href="../Vista/CSS/style.css" type="text/css" rel="stylesheet">
                     <link href="../Vista/CSS/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-                  </head>';
+                  </head>
+                  <body>';
     }
 
 }
