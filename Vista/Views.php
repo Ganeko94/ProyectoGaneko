@@ -117,15 +117,16 @@ abstract class Views
             }
             else{
                 echo '<h3>Selecciona el Álbum que quieres ver.</h3>';
-                echo "<form action='router.php' method='post'><table class='table' border='1'><tr><th>Album</th><th>Fecha</th><th>Descripcion</th><th>Ver album</th></tr>";
+                echo "<table class='table' border='1'><tr><th>Album</th><th>Fecha</th><th>Descripcion</th><th>Ver album</th></tr>";
                 for ($x = 0; $x < count($_SESSION["albumes"]); $x++) {
-                    ?><tr><td><?php echo $_SESSION["albumes"][$x]->getTitulo();?></td><td><?php echo $_SESSION["albumes"][$x]->getFecha();?></td><td><?php echo $_SESSION["albumes"][$x]->getDescripcion();?></td><td><input type="submit" name="veralbum" value="Ver Album"><input type="hidden" name="album" value="<?php echo $_SESSION["albumes"][$x]->getIdalbum();?>" </td></tr><?php
+                    echo "<form action='router.php' method='post'>";
+                    ?><tr><td><?php echo $_SESSION["albumes"][$x]->getTitulo();?></td><td><?php echo $_SESSION["albumes"][$x]->getFecha();?></td><td><?php echo $_SESSION["albumes"][$x]->getDescripcion();?></td><td><input type="submit" name="veralbum" value="Ver Album"><input type="hidden" name="album" <?php echo "value='".$_SESSION["albumes"][$x]->getIdAlbum()."'";?>"></td></tr><?php
+                    echo "</form>";
                 }
-                echo "</table></form>";
+                echo "</table>";
             }
 
             ?>
-            </table>
             <br/>
             <form action="router.php" method="post">
                 <input type="submit" name="cancelar2" value="Volver">
